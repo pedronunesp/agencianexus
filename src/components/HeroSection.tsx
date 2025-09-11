@@ -77,9 +77,15 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
           <em>"Nexus: do latim, um ponto que une várias coisas."</em>
         </p>
 
-        {/* Fake Search Bar */}
+        {/* Search Section */}
         <div className="max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.6s' }}>
-          <div className="relative group">
+          {/* Question Text */}
+          <h3 className="text-xl md:text-2xl text-foreground/90 mb-6 font-medium">
+            O que você precisa da gente?
+          </h3>
+
+          {/* Fake Search Bar */}
+          <div className="relative group mb-8">
             <div className="absolute inset-0 bg-gradient-to-r from-neon-green/20 to-neon-blue/20 rounded-lg blur-sm group-hover:blur-none transition-all duration-300"></div>
             <div className="relative flex items-center bg-card-bg/80 backdrop-blur-sm border border-neon-green/30 rounded-lg p-4 hover:border-neon-green/60 transition-all duration-300">
               <Search className="w-6 h-6 text-neon-green mr-4 animate-neon-pulse" />
@@ -103,13 +109,13 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Service Suggestions */}
-          <div className="mt-6 flex flex-wrap gap-2 justify-center">
-            {services.slice(0, 4).map((service, index) => (
+          {/* All Services Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {services.map((service, index) => (
               <button
                 key={service}
                 onClick={() => handleServiceClick(service)}
-                className="px-4 py-2 text-sm bg-card-bg/50 text-foreground/80 rounded-full border border-neon-green/20 hover:border-neon-green/60 hover:text-neon-green transition-all duration-300 hover:shadow-lg hover:shadow-neon-green/20"
+                className="px-3 py-3 text-sm bg-card-bg/50 text-foreground/80 rounded-lg border border-neon-green/20 hover:border-neon-green/60 hover:text-neon-green transition-all duration-300 hover:shadow-lg hover:shadow-neon-green/20 hover:bg-neon-green/5 text-center"
                 style={{ animationDelay: `${0.8 + index * 0.1}s` }}
               >
                 {service}
