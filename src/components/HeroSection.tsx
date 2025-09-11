@@ -102,7 +102,7 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
               <Button 
                 onClick={handleSearch}
                 variant="default"
-                className="ml-4 bg-neon-green text-darker-bg hover:bg-neon-green-glow font-bold px-8 cyber-glow"
+                className={`ml-4 bg-neon-green text-darker-bg hover:bg-neon-green-glow font-bold px-8 cyber-glow transition-all duration-300 ${searchValue ? 'animate-pulse shadow-lg shadow-neon-green/50 scale-105' : ''}`}
               >
                 Ir
               </Button>
