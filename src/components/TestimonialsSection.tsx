@@ -98,13 +98,13 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-black font-cyber gradient-text mb-6">
+          <h2 className="text-5xl md:text-6xl font-black font-primary gradient-text mb-6">
             DEPOIMENTOS
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Histórias reais de clientes que transformaram seus negócios conosco
           </p>
-          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-neon-green to-neon-blue mt-8"></div>
+          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-primary-blue to-accent-cyan mt-8"></div>
         </div>
 
         {/* Testimonials Carousel */}
@@ -116,11 +116,11 @@ export default function TestimonialsSection() {
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <Card className="p-8 bg-card-bg/80 backdrop-blur-sm border border-neon-green/30 hover:border-neon-green/60 transition-all duration-300 cyber-glow">
+                  <Card className="p-8 surface-card hover:border-primary-blue/60 transition-all duration-300 tech-glow">
                     {/* Rating */}
                     <div className="flex justify-center mb-6">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-neon-green fill-current" />
+                        <Star key={i} className="w-5 h-5 text-accent-green fill-current" />
                       ))}
                     </div>
 
@@ -131,14 +131,14 @@ export default function TestimonialsSection() {
 
                     {/* Author */}
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-neon-green to-neon-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-2xl font-bold text-darker-bg">
+                      <div className="w-16 h-16 bg-gradient-to-r from-primary-blue to-accent-cyan rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-white">
                           {testimonial.name.charAt(0)}
                         </span>
                       </div>
-                      <div className="font-semibold text-neon-green text-lg">{testimonial.name}</div>
-                      <div className="text-foreground/70">{testimonial.role} • {testimonial.company}</div>
-                      <div className="text-sm text-neon-blue mt-2 font-medium">{testimonial.service}</div>
+                      <div className="font-semibold text-primary-blue text-lg">{testimonial.name}</div>
+                      <div className="text-text-secondary">{testimonial.role} • {testimonial.company}</div>
+                      <div className="text-sm text-accent-cyan mt-2 font-medium">{testimonial.service}</div>
                     </div>
                   </Card>
                 </div>
@@ -151,7 +151,7 @@ export default function TestimonialsSection() {
             variant="outline"
             size="icon"
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-card-bg/80 border-neon-green/50 text-neon-green hover:bg-neon-green hover:text-darker-bg"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-surface/80 border-primary-blue/50 text-primary-blue hover:bg-primary-blue hover:text-white"
           >
             <ChevronLeft className="w-5 h-5" />
           </Button>
@@ -160,7 +160,7 @@ export default function TestimonialsSection() {
             variant="outline"
             size="icon"
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-card-bg/80 border-neon-green/50 text-neon-green hover:bg-neon-green hover:text-darker-bg"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-surface/80 border-primary-blue/50 text-primary-blue hover:bg-primary-blue hover:text-white"
           >
             <ChevronRight className="w-5 h-5" />
           </Button>
@@ -173,7 +173,7 @@ export default function TestimonialsSection() {
                 onClick={() => goToTestimonial(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-neon-green shadow-lg shadow-neon-green/50' 
+                    ? 'bg-primary-blue shadow-lg shadow-primary-blue/50' 
                     : 'bg-foreground/30 hover:bg-foreground/50'
                 }`}
               />
@@ -183,16 +183,16 @@ export default function TestimonialsSection() {
 
         {/* Client Logos */}
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-foreground/80 mb-8">
+          <h3 className="text-2xl font-bold text-text-secondary mb-8">
             Clientes que confiam na Nexus
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
             {clientLogos.map((logo, index) => (
               <div 
                 key={logo}
-                className="px-6 py-3 bg-card-bg/30 rounded-lg border border-neon-green/20 hover:border-neon-green/40 transition-all duration-300 hover:opacity-100"
+                className="px-6 py-3 bg-surface/30 rounded-lg border border-primary-blue/20 hover:border-primary-blue/40 transition-all duration-300 hover:opacity-100"
               >
-                <span className="text-foreground/70 font-medium">{logo}</span>
+                <span className="text-text-secondary font-medium">{logo}</span>
               </div>
             ))}
           </div>

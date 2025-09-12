@@ -81,25 +81,25 @@ ${formData.message}`;
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-black font-cyber gradient-text mb-6">
+          <h2 className="text-5xl md:text-6xl font-black font-primary gradient-text mb-6">
             TRANSFORME SUA IDEIA
           </h2>
           <p className="text-2xl md:text-3xl text-foreground/90 mb-4">
             Quer transformar sua ideia em resultado?
           </p>
-          <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Conte-nos sobre seu projeto e receba um orçamento personalizado em até 24 horas
           </p>
-          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-neon-green to-neon-blue mt-8"></div>
+          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-primary-blue to-accent-cyan mt-8"></div>
         </div>
 
         {/* CTA Form */}
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 md:p-12 bg-card-bg/80 backdrop-blur-sm border border-neon-green/30 cyber-glow">
+          <Card className="p-8 md:p-12 surface-card tech-glow">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Services Selection */}
               <div>
-                <h3 className="text-2xl font-bold text-neon-green mb-6">
+                <h3 className="text-2xl font-bold text-primary-blue mb-6">
                   Selecione os serviços de interesse:
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -110,8 +110,8 @@ ${formData.message}`;
                       onClick={() => toggleService(service)}
                       className={`p-4 rounded-lg border transition-all duration-300 text-left ${
                         selectedServices.includes(service)
-                          ? 'border-neon-green bg-neon-green/10 text-neon-green'
-                          : 'border-neon-green/30 bg-card-bg/50 text-foreground/80 hover:border-neon-green/60 hover:text-neon-green'
+                          ? 'border-primary-blue bg-primary-blue/10 text-primary-blue'
+                          : 'border-primary-blue/30 bg-surface/50 text-text-secondary hover:border-primary-blue/60 hover:text-primary-blue'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -135,7 +135,7 @@ ${formData.message}`;
                     required
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="bg-darker-bg/50 border-neon-green/30 text-foreground focus:border-neon-green"
+                    className="bg-darker-bg/50 border-primary-blue/30 text-foreground focus:border-primary-blue"
                     placeholder="Seu nome completo"
                   />
                 </div>
@@ -149,7 +149,7 @@ ${formData.message}`;
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="bg-darker-bg/50 border-neon-green/30 text-foreground focus:border-neon-green"
+                    className="bg-darker-bg/50 border-primary-blue/30 text-foreground focus:border-primary-blue"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -163,7 +163,7 @@ ${formData.message}`;
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    className="bg-darker-bg/50 border-neon-green/30 text-foreground focus:border-neon-green"
+                    className="bg-darker-bg/50 border-primary-blue/30 text-foreground focus:border-primary-blue"
                     placeholder="(11) 99999-9999"
                   />
                 </div>
@@ -175,7 +175,7 @@ ${formData.message}`;
                   <Textarea
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    className="bg-darker-bg/50 border-neon-green/30 text-foreground focus:border-neon-green min-h-[120px]"
+                    className="bg-darker-bg/50 border-primary-blue/30 text-foreground focus:border-primary-blue min-h-[120px]"
                     placeholder="Descreva seu projeto, objetivos, prazos e qualquer informação relevante..."
                   />
                 </div>
@@ -187,11 +187,11 @@ ${formData.message}`;
                   type="submit"
                   size="lg"
                   disabled={isSubmitting || selectedServices.length === 0 || !formData.name || !formData.email || !formData.phone}
-                  className="px-12 py-4 bg-neon-green text-darker-bg hover:bg-neon-green-glow font-bold text-lg cyber-glow disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-12 py-4 bg-primary-blue text-white hover:bg-primary-blue-dark font-bold text-lg tech-glow disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 border-2 border-darker-bg/30 border-t-darker-bg rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       Enviando...
                     </div>
                   ) : (
@@ -213,16 +213,16 @@ ${formData.message}`;
         {/* Trust Indicators */}
         <div className="grid md:grid-cols-3 gap-8 mt-16 text-center">
           <div className="p-6">
-            <div className="text-4xl font-black text-neon-green mb-2">+200</div>
-            <div className="text-foreground/80">Projetos Entregues</div>
+            <div className="text-4xl font-black text-accent-green mb-2">+200</div>
+            <div className="text-text-secondary">Projetos Entregues</div>
           </div>
           <div className="p-6">
-            <div className="text-4xl font-black text-neon-blue mb-2">24h</div>
-            <div className="text-foreground/80">Resposta Garantida</div>
+            <div className="text-4xl font-black text-primary-blue mb-2">24h</div>
+            <div className="text-text-secondary">Resposta Garantida</div>
           </div>
           <div className="p-6">
-            <div className="text-4xl font-black text-neon-purple mb-2">100%</div>
-            <div className="text-foreground/80">Satisfação do Cliente</div>
+            <div className="text-4xl font-black text-accent-purple mb-2">100%</div>
+            <div className="text-text-secondary">Satisfação do Cliente</div>
           </div>
         </div>
       </div>

@@ -228,13 +228,13 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-black font-cyber gradient-text mb-6">
+          <h2 className="text-5xl md:text-6xl font-black font-primary gradient-text mb-6">
             O QUE FAZEMOS
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Dividimos nossa expertise em 3 pilares fundamentais para transformar sua presença digital
           </p>
-          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-neon-green to-neon-blue mt-8"></div>
+          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-primary-blue to-accent-cyan mt-8"></div>
         </div>
 
         {/* Services */}
@@ -251,14 +251,14 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
               >
                 {/* Service Header */}
                 <div className="flex items-center gap-6 mb-16">
-                  <div className="p-4 bg-card-bg border border-neon-green/30 rounded-xl cyber-glow">
-                    <Icon className="w-8 h-8 text-neon-green" />
+                  <div className="p-4 bg-surface border border-primary-blue/30 rounded-xl tech-glow">
+                    <Icon className="w-8 h-8 text-primary-blue" />
                   </div>
                   <div>
-                    <h3 className="text-4xl md:text-5xl font-bold text-foreground neon-text">
+                    <h3 className="text-4xl md:text-5xl font-bold text-foreground primary-text">
                       {service.title}
                     </h3>
-                    <p className="text-xl text-foreground/70 mt-2">{service.description}</p>
+                    <p className="text-xl text-text-secondary mt-2">{service.description}</p>
                   </div>
                 </div>
 
@@ -271,13 +271,13 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                         onOpenChange={() => toggleSection(subService.id)}
                       >
                         <CollapsibleTrigger className="w-full">
-                          <div className="flex items-center gap-4 mb-4 group hover:bg-neon-green/5 p-4 rounded-lg transition-all duration-300">
+                          <div className="flex items-center gap-4 mb-4 group hover:bg-accent-green/5 p-4 rounded-lg transition-all duration-300">
                             {openSections[subService.id] ? (
-                              <ChevronDown className="w-6 h-6 text-neon-green transition-transform duration-300" />
+                              <ChevronDown className="w-6 h-6 text-accent-green transition-transform duration-300" />
                             ) : (
-                              <ChevronRight className="w-6 h-6 text-neon-green transition-transform duration-300" />
+                              <ChevronRight className="w-6 h-6 text-accent-green transition-transform duration-300" />
                             )}
-                            <h4 className="text-xl md:text-2xl font-bold text-neon-green text-left group-hover:text-neon-green-glow transition-colors duration-300">
+                            <h4 className="text-xl md:text-2xl font-bold text-accent-green text-left group-hover:text-primary-blue transition-colors duration-300">
                               {subService.title}
                             </h4>
                           </div>
@@ -287,7 +287,7 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                           {/* Projects */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                             {subService.projects.map((project, projectIndex) => (
-                              <Card key={projectIndex} className="bg-card-bg border border-neon-green/20 overflow-hidden hover:border-neon-green/50 transition-all duration-300 group">
+                              <Card key={projectIndex} className="surface-card overflow-hidden hover:border-primary-blue/50 transition-all duration-300 group">
                                 {/* Project Thumbnail */}
                                 <div className="relative cursor-pointer">
                                   <img 
@@ -298,8 +298,8 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                                   
                                   {/* Play Overlay */}
                                   <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                      <Play className="w-8 h-8 text-neon-green ml-1" />
+                                    <div className="w-16 h-16 bg-primary-blue/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                      <Play className="w-8 h-8 text-primary-blue ml-1" />
                                     </div>
                                   </div>
                                   
@@ -316,12 +316,12 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                                       {project.metrics.map((metric, metricIndex) => (
                                         <div key={metricIndex} className="text-center">
                                           <div className="text-lg font-bold text-foreground">{metric.value}</div>
-                                          <div className="text-xs text-foreground/70">{metric.label}</div>
+                                          <div className="text-xs text-text-muted">{metric.label}</div>
                                           {metric.increase && (
-                                            <div className="text-xs text-neon-green font-medium">{metric.increase}</div>
+                                            <div className="text-xs text-accent-green font-medium">{metric.increase}</div>
                                           )}
                                           {metric.decrease && (
-                                            <div className="text-xs text-neon-blue font-medium">{metric.decrease}</div>
+                                            <div className="text-xs text-accent-cyan font-medium">{metric.decrease}</div>
                                           )}
                                         </div>
                                       ))}
@@ -332,23 +332,23 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                                   <Button 
                                     variant="outline" 
                                     size="sm"
-                                    className="w-full mb-4 border-neon-green/30 text-neon-green hover:bg-neon-green hover:text-darker-bg"
+                                    className="w-full mb-4 border-primary-blue/30 text-primary-blue hover:bg-primary-blue hover:text-white"
                                   >
                                     Ver todo trabalho
                                   </Button>
 
                                   {/* Feedback */}
-                                  <div className="border-t border-neon-green/20 pt-4">
-                                    <p className="text-sm text-foreground/80 italic mb-2">
+                                  <div className="border-t border-primary-blue/20 pt-4">
+                                    <p className="text-sm text-text-secondary italic mb-2">
                                       "{project.feedback.text}"
                                     </p>
                                     <div className="flex items-center gap-2">
-                                      <div className="w-6 h-6 bg-gradient-to-r from-neon-green to-neon-blue rounded-full flex items-center justify-center">
-                                        <span className="text-xs text-darker-bg font-bold">
+                                      <div className="w-6 h-6 bg-gradient-to-r from-primary-blue to-accent-cyan rounded-full flex items-center justify-center">
+                                        <span className="text-xs text-white font-bold">
                                           {project.feedback.author.charAt(0)}
                                         </span>
                                       </div>
-                                      <span className="text-sm font-medium text-neon-green">
+                                      <span className="text-sm font-medium text-primary-blue">
                                         {project.feedback.author}
                                       </span>
                                     </div>

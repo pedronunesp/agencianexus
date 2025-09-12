@@ -57,18 +57,18 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
 
       {/* Animated Grid Overlay */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-neon-green/10 via-transparent to-neon-blue/10"></div>
-        <div className="h-full w-full bg-[linear-gradient(rgba(120,255,120,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(120,255,120,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-blue/10 via-transparent to-accent-cyan/10"></div>
+        <div className="h-full w-full bg-[linear-gradient(rgba(100,150,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(100,150,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-soft-pulse"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
         {/* Logo placeholder - você pode substituir por logo real */}
         <div className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-black font-cyber gradient-text mb-4 animate-slide-up">
+          <h1 className="text-6xl md:text-8xl font-black font-primary gradient-text mb-4 animate-slide-up">
             NEXUS
           </h1>
-          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-neon-green to-neon-blue animate-glow-pulse"></div>
+          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-primary-blue to-accent-cyan animate-glow-pulse"></div>
         </div>
 
         {/* Main Quote */}
@@ -86,9 +86,9 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
 
           {/* Fake Search Bar */}
           <div className="relative group mb-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-green/20 to-neon-blue/20 rounded-lg blur-sm group-hover:blur-none transition-all duration-300"></div>
-            <div className="relative flex items-center bg-card-bg/80 backdrop-blur-sm border border-neon-green/30 rounded-lg p-4 hover:border-neon-green/60 transition-all duration-300">
-              <Search className="w-6 h-6 text-neon-green mr-4 animate-neon-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-blue/20 to-accent-cyan/20 rounded-lg blur-sm group-hover:blur-none transition-all duration-300"></div>
+            <div className="relative flex items-center bg-card-bg/80 backdrop-blur-sm border border-primary-blue/30 rounded-lg p-4 hover:border-primary-blue/60 transition-all duration-300">
+              <Search className="w-6 h-6 text-primary-blue mr-4 animate-soft-pulse" />
               <div className="flex-1 text-left">
                 <input
                   type="text"
@@ -102,7 +102,7 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
               <Button 
                 onClick={handleSearch}
                 variant="default"
-                className={`ml-4 bg-neon-green text-darker-bg hover:bg-neon-green-glow font-bold px-8 cyber-glow transition-all duration-300 ${searchValue ? 'animate-pulse shadow-lg shadow-neon-green/50 scale-105' : ''}`}
+                className={`ml-4 bg-primary-blue text-white hover:bg-primary-blue-dark font-bold px-8 tech-glow transition-all duration-300 ${searchValue ? 'animate-pulse shadow-lg shadow-primary-blue/50 scale-105' : ''}`}
               >
                 Ir
               </Button>
@@ -115,7 +115,7 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
               <button
                 key={service}
                 onClick={() => handleServiceClick(service)}
-                className="px-3 py-3 text-sm bg-card-bg/50 text-foreground/80 rounded-lg border border-neon-green/20 hover:border-neon-green/60 hover:text-neon-green transition-all duration-300 hover:shadow-lg hover:shadow-neon-green/20 hover:bg-neon-green/5 text-center"
+                className="px-3 py-3 text-sm bg-surface/50 text-text-secondary rounded-lg border border-primary-blue/20 hover:border-primary-blue/60 hover:text-primary-blue transition-all duration-300 hover:shadow-lg hover:shadow-primary-blue/20 hover:bg-primary-blue/5 text-center"
                 style={{ animationDelay: `${0.8 + index * 0.1}s` }}
               >
                 {service}
