@@ -124,24 +124,6 @@ export default function HeroSection({ onServiceSelect }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Play Button for "Demo Reel" */}
-        <div className="mt-16 animate-cyber-float">
-          <Button
-            variant="outline"
-            size="lg"
-            className="group bg-transparent border-2 border-neon-green/50 text-neon-green hover:bg-neon-green hover:text-darker-bg transition-all duration-300"
-          >
-            <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-            Ver Demo Reel
-          </Button>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-neon-green/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-neon-green rounded-full mt-2 animate-neon-pulse"></div>
-        </div>
       </div>
     </section>
   );

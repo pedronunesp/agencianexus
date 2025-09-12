@@ -122,27 +122,16 @@ export default function WhatsAppFloat() {
       )}
 
       {/* Floating Button */}
-      <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 md:bottom-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:translate-y-1/2 z-40">
         <Button
           onClick={() => setIsOpen(true)}
-          className="relative group bg-neon-green text-darker-bg hover:bg-neon-green-glow font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl cyber-glow animate-cyber-float"
+          className="group bg-neon-green text-darker-bg hover:bg-neon-green-glow font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl cyber-glow transition-all duration-300"
         >
           <div className="flex items-center gap-2">
             <MessageCircle className="w-5 h-5" />
-            <span className="hidden sm:inline">Conversar agora</span>
+            <span className="inline">Conversar agora</span>
           </div>
-          
-          {/* Pulse animation */}
-          <div className="absolute inset-0 rounded-full bg-neon-green opacity-75 animate-ping"></div>
         </Button>
-
-        {/* Tooltip for mobile */}
-        <div className="sm:hidden absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="bg-dark-bg text-foreground text-sm px-3 py-2 rounded-lg border border-neon-green/30 whitespace-nowrap">
-            Conversar agora
-            <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-neon-green/30"></div>
-          </div>
-        </div>
       </div>
     </>
   );

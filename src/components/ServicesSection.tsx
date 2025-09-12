@@ -1,6 +1,8 @@
-import { Play, Eye, TrendingUp, Palette, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Play, Eye, TrendingUp, Palette, ChevronRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import audiovisualImg from "@/assets/audiovisual-service.jpg";
 import marketingImg from "@/assets/marketing-service.jpg";
 import designImg from "@/assets/design-service.jpg";
@@ -212,6 +214,15 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ activeService }: ServicesSectionProps) {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (sectionId: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-dark-bg to-darker-bg">
       <div className="container mx-auto px-6">
@@ -252,90 +263,102 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                 </div>
 
                 {/* Sub-services */}
-                <div className="space-y-20">
+                <div className="space-y-8">
                   {service.subServices.map((subService, subIndex) => (
-                    <div key={subService.id} className="ml-8">
-                      {/* Sub-service Title */}
-                      <div className="flex items-center gap-4 mb-8">
-                        <ChevronRight className="w-6 h-6 text-neon-green" />
-                        <h4 className="text-2xl md:text-3xl font-bold text-neon-green">
-                          {subService.title}
-                        </h4>
-                      </div>
+                    <div key={subService.id} className="ml-4 md:ml-8">
+                      <Collapsible 
+                        open={openSections[subService.id]} 
+                        onOpenChange={() => toggleSection(subService.id)}
+                      >
+                        <CollapsibleTrigger className="w-full">
+                          <div className="flex items-center gap-4 mb-4 group hover:bg-neon-green/5 p-4 rounded-lg transition-all duration-300">
+                            {openSections[subService.id] ? (
+                              <ChevronDown className="w-6 h-6 text-neon-green transition-transform duration-300" />
+                            ) : (
+                              <ChevronRight className="w-6 h-6 text-neon-green transition-transform duration-300" />
+                            )}
+                            <h4 className="text-xl md:text-2xl font-bold text-neon-green text-left group-hover:text-neon-green-glow transition-colors duration-300">
+                              {subService.title}
+                            </h4>
+                          </div>
+                        </CollapsibleTrigger>
 
-                      {/* Projects */}
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 ml-8">
-                        {subService.projects.map((project, projectIndex) => (
-                          <Card key={projectIndex} className="bg-card-bg border border-neon-green/20 overflow-hidden hover:border-neon-green/50 transition-all duration-300 group">
-                            {/* Project Thumbnail */}
-                            <div className="relative cursor-pointer">
-                              <img 
-                                src={project.thumbnail}
-                                alt={project.title}
-                                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                              />
-                              
-                              {/* Play Overlay */}
-                              <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                  <Play className="w-8 h-8 text-neon-green ml-1" />
-                                </div>
-                              </div>
-                              
-                              {/* Project Title Overlay */}
-                              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-bg via-dark-bg/80 to-transparent">
-                                <h5 className="text-lg font-semibold text-foreground">{project.title}</h5>
-                              </div>
-                            </div>
-
-                            <div className="p-6">
-                              {/* Metrics for Marketing cases */}
-                              {project.type === 'case' && project.metrics && (
-                                <div className="grid grid-cols-3 gap-4 mb-6">
-                                  {project.metrics.map((metric, metricIndex) => (
-                                    <div key={metricIndex} className="text-center">
-                                      <div className="text-lg font-bold text-foreground">{metric.value}</div>
-                                      <div className="text-xs text-foreground/70">{metric.label}</div>
-                                      {metric.increase && (
-                                        <div className="text-xs text-neon-green font-medium">{metric.increase}</div>
-                                      )}
-                                      {metric.decrease && (
-                                        <div className="text-xs text-neon-blue font-medium">{metric.decrease}</div>
-                                      )}
+                        <CollapsibleContent className="ml-4 md:ml-8">
+                          {/* Projects */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            {subService.projects.map((project, projectIndex) => (
+                              <Card key={projectIndex} className="bg-card-bg border border-neon-green/20 overflow-hidden hover:border-neon-green/50 transition-all duration-300 group">
+                                {/* Project Thumbnail */}
+                                <div className="relative cursor-pointer">
+                                  <img 
+                                    src={project.thumbnail}
+                                    alt={project.title}
+                                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                  />
+                                  
+                                  {/* Play Overlay */}
+                                  <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                      <Play className="w-8 h-8 text-neon-green ml-1" />
                                     </div>
-                                  ))}
-                                </div>
-                              )}
-
-                              {/* See All Work Button */}
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                className="w-full mb-4 border-neon-green/30 text-neon-green hover:bg-neon-green hover:text-darker-bg"
-                              >
-                                Ver todo trabalho
-                              </Button>
-
-                              {/* Feedback */}
-                              <div className="border-t border-neon-green/20 pt-4">
-                                <p className="text-sm text-foreground/80 italic mb-2">
-                                  "{project.feedback.text}"
-                                </p>
-                                <div className="flex items-center gap-2">
-                                  <div className="w-6 h-6 bg-gradient-to-r from-neon-green to-neon-blue rounded-full flex items-center justify-center">
-                                    <span className="text-xs text-darker-bg font-bold">
-                                      {project.feedback.author.charAt(0)}
-                                    </span>
                                   </div>
-                                  <span className="text-sm font-medium text-neon-green">
-                                    {project.feedback.author}
-                                  </span>
+                                  
+                                  {/* Project Title Overlay */}
+                                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-bg via-dark-bg/80 to-transparent">
+                                    <h5 className="text-lg font-semibold text-foreground">{project.title}</h5>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                          </Card>
-                        ))}
-                      </div>
+
+                                <div className="p-4 md:p-6">
+                                  {/* Metrics for Marketing cases */}
+                                  {project.type === 'case' && project.metrics && (
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                                      {project.metrics.map((metric, metricIndex) => (
+                                        <div key={metricIndex} className="text-center">
+                                          <div className="text-lg font-bold text-foreground">{metric.value}</div>
+                                          <div className="text-xs text-foreground/70">{metric.label}</div>
+                                          {metric.increase && (
+                                            <div className="text-xs text-neon-green font-medium">{metric.increase}</div>
+                                          )}
+                                          {metric.decrease && (
+                                            <div className="text-xs text-neon-blue font-medium">{metric.decrease}</div>
+                                          )}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+
+                                  {/* See All Work Button */}
+                                  <Button 
+                                    variant="outline" 
+                                    size="sm"
+                                    className="w-full mb-4 border-neon-green/30 text-neon-green hover:bg-neon-green hover:text-darker-bg"
+                                  >
+                                    Ver todo trabalho
+                                  </Button>
+
+                                  {/* Feedback */}
+                                  <div className="border-t border-neon-green/20 pt-4">
+                                    <p className="text-sm text-foreground/80 italic mb-2">
+                                      "{project.feedback.text}"
+                                    </p>
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-6 h-6 bg-gradient-to-r from-neon-green to-neon-blue rounded-full flex items-center justify-center">
+                                        <span className="text-xs text-darker-bg font-bold">
+                                          {project.feedback.author.charAt(0)}
+                                        </span>
+                                      </div>
+                                      <span className="text-sm font-medium text-neon-green">
+                                        {project.feedback.author}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </Card>
+                            ))}
+                          </div>
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
                   ))}
                 </div>
