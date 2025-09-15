@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useTestimonials } from "@/hooks/useTestimonials";
+import { useClientLogos } from "@/hooks/useClientLogos";
 
 const testimonials = [
   {
@@ -67,23 +69,27 @@ const clientLogos = [
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const { data: testimonials, isLoading: testimonialsLoading } = useTestimonials();
+  const { data: clientLogos, isLoading: logosLoading } = useClientLogos();
 
   useEffect(() => {
-    if (!isAutoPlay) return;
+    if (!isAutoPlay || !testimonials) return;
     
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlay]);
+  }, [isAutoPlay, testimonials]);
 
   const nextTestimonial = () => {
+    if (!testimonials) return;
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     setIsAutoPlay(false);
   };
 
   const prevTestimonial = () => {
+    if (!testimonials) return;
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     setIsAutoPlay(false);
   };
@@ -92,6 +98,33 @@ export default function TestimonialsSection() {
     setCurrentIndex(index);
     setIsAutoPlay(false);
   };
+
+  if (testimonialsLoading || logosLoading) {
+    return (
+      <section className="py-20 bg-gradient-to-b from-darker-bg to-dark-bg">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-12 bg-surface rounded-lg mx-auto mb-4 max-w-md"></div>
+              <div className="h-6 bg-surface rounded-lg mx-auto max-w-lg"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!testimonials || testimonials.length === 0) {
+    return (
+      <section className="py-20 bg-gradient-to-b from-darker-bg to-dark-bg">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <p className="text-text-secondary">Nenhum depoimento encontrado.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-gradient-to-b from-darker-bg to-dark-bg">
@@ -104,7 +137,7 @@ export default function TestimonialsSection() {
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Histórias reais de clientes que transformaram seus negócios conosco
           </p>
-          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-primary-blue to-accent-cyan mt-8"></div>
+          <div className="h-1 w-24 mx-auto bg-gradient-to-r from-neon-green to-accent-cyan mt-8"></div>
         </div>
 
         {/* Testimonials Carousel */}
@@ -120,7 +153,7 @@ export default function TestimonialsSection() {
                     {/* Rating */}
                     <div className="flex justify-center mb-6">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-accent-green fill-current" />
+                        <Star key={i} className="w-5 h-5 text-neon-green fill-current" />
                       ))}
                     </div>
 
@@ -131,12 +164,12 @@ export default function TestimonialsSection() {
 
                     {/* Author */}
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-primary-blue to-accent-cyan rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-2xl font-bold text-white">
+                      <div className="w-16 h-16 bg-gradient-to-r from-neon-green to-accent-cyan rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-dark-bg">
                           {testimonial.name.charAt(0)}
                         </span>
                       </div>
-                      <div className="font-semibold text-primary-blue text-lg">{testimonial.name}</div>
+                      <div className="font-semibold text-neon-green text-lg">{testimonial.name}</div>
                       <div className="text-text-secondary">{testimonial.role} • {testimonial.company}</div>
                       <div className="text-sm text-accent-cyan mt-2 font-medium">{testimonial.service}</div>
                     </div>
@@ -151,7 +184,7 @@ export default function TestimonialsSection() {
             variant="outline"
             size="icon"
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-surface/80 border-primary-blue/50 text-primary-blue hover:bg-primary-blue hover:text-white"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-surface/80 border-neon-green/50 text-neon-green hover:bg-neon-green hover:text-dark-bg"
           >
             <ChevronLeft className="w-5 h-5" />
           </Button>
@@ -160,7 +193,7 @@ export default function TestimonialsSection() {
             variant="outline"
             size="icon"
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-surface/80 border-primary-blue/50 text-primary-blue hover:bg-primary-blue hover:text-white"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-surface/80 border-neon-green/50 text-neon-green hover:bg-neon-green hover:text-dark-bg"
           >
             <ChevronRight className="w-5 h-5" />
           </Button>
@@ -173,7 +206,7 @@ export default function TestimonialsSection() {
                 onClick={() => goToTestimonial(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-primary-blue shadow-lg shadow-primary-blue/50' 
+                    ? 'bg-neon-green shadow-lg shadow-neon-green/50' 
                     : 'bg-foreground/30 hover:bg-foreground/50'
                 }`}
               />
@@ -187,12 +220,12 @@ export default function TestimonialsSection() {
             Clientes que confiam na Nexus
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {clientLogos.map((logo, index) => (
+            {clientLogos?.map((logo, index) => (
               <div 
-                key={logo}
-                className="px-6 py-3 bg-surface/30 rounded-lg border border-primary-blue/20 hover:border-primary-blue/40 transition-all duration-300 hover:opacity-100"
+                key={logo.id}
+                className="px-6 py-3 bg-surface/30 rounded-lg border border-neon-green/20 hover:border-neon-green/40 transition-all duration-300 hover:opacity-100"
               >
-                <span className="text-text-secondary font-medium">{logo}</span>
+                <span className="text-text-secondary font-medium">{logo.name}</span>
               </div>
             ))}
           </div>

@@ -11,15 +11,15 @@ All colors MUST be HSL.
     --background: 220 15% 8%;
     --foreground: 210 20% 95%;
     
-    /* Primary Tech Colors - More subtle */
-    --primary-blue: 210 70% 55%;
-    --primary-blue-light: 210 60% 65%;
-    --primary-blue-dark: 210 80% 45%;
+    /* Primary Brand Colors - Verde Nexus */
+    --neon-green: 150 90% 60%;
+    --neon-green-light: 150 80% 70%;
+    --neon-green-dark: 150 95% 50%;
     
     /* Accent Colors - Refined */
-    --accent-green: 150 60% 50%;
     --accent-cyan: 180 60% 55%;
     --accent-purple: 260 70% 65%;
+    --accent-blue: 210 70% 55%;
     
     /* Background System */
     --dark-bg: 220 15% 8%;
@@ -33,15 +33,16 @@ All colors MUST be HSL.
     --text-muted: 210 10% 60%;
     
     /* Gradients - Elegant */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-blue)), hsl(var(--accent-cyan)));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--neon-green)), hsl(var(--accent-cyan)));
     --gradient-surface: linear-gradient(180deg, hsl(var(--card-bg)), hsl(var(--dark-bg)));
-    --gradient-accent: linear-gradient(45deg, hsl(var(--accent-green) / 0.1), hsl(var(--primary-blue) / 0.1));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--neon-green) / 0.1), hsl(var(--accent-cyan) / 0.1));
     
     /* Shadows & Effects - Subtle */
     --shadow-soft: 0 4px 20px hsl(220 20% 3% / 0.5);
     --shadow-medium: 0 8px 30px hsl(220 20% 3% / 0.7);
-    --glow-subtle: 0 0 15px hsl(var(--primary-blue) / 0.2);
-    --glow-accent: 0 0 20px hsl(var(--accent-green) / 0.3);
+    --glow-subtle: 0 0 15px hsl(var(--neon-green) / 0.2);
+    --glow-accent: 0 0 20px hsl(var(--neon-green) / 0.3);
+    --neon-glow: 0 0 30px hsl(var(--neon-green) / 0.4);
     
     /* Animation */
     --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -50,7 +51,7 @@ All colors MUST be HSL.
     --font-primary: 'Montserrat', sans-serif;
 
     /* Shadcn compatibility */
-    --primary: var(--primary-blue);
+    --primary: var(--neon-green);
     --primary-foreground: var(--text-primary);
     
     --secondary: var(--surface);
@@ -65,7 +66,7 @@ All colors MUST be HSL.
     --muted: var(--surface);
     --muted-foreground: var(--text-muted);
     
-    --accent: var(--accent-green);
+    --accent: var(--neon-green);
     --accent-foreground: var(--text-primary);
     
     --destructive: 0 70% 60%;
@@ -73,7 +74,7 @@ All colors MUST be HSL.
     
     --border: 220 15% 20%;
     --input: var(--card-bg);
-    --ring: var(--primary-blue);
+    --ring: var(--neon-green);
     
     --radius: 0.75rem;
   }
@@ -92,11 +93,16 @@ All colors MUST be HSL.
   }
   
   .accent-text {
-    color: hsl(var(--accent-green));
+    color: hsl(var(--neon-green));
   }
   
   .primary-text {
-    color: hsl(var(--primary-blue));
+    color: hsl(var(--neon-green));
+  }
+  
+  .neon-text {
+    color: hsl(var(--neon-green));
+    text-shadow: 0 0 10px hsl(var(--neon-green) / 0.5);
   }
   
   .gradient-text {

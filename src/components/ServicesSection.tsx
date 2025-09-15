@@ -3,6 +3,7 @@ import { Play, Eye, TrendingUp, Palette, ChevronRight, ChevronDown } from "lucid
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useServices } from "@/hooks/useServices";
 import audiovisualImg from "@/assets/audiovisual-service.jpg";
 import marketingImg from "@/assets/marketing-service.jpg";
 import designImg from "@/assets/design-service.jpg";
@@ -215,6 +216,7 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ activeService }: ServicesSectionProps) {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+  const { data: services, isLoading, error } = useServices();
 
   const toggleSection = (sectionId: string) => {
     setOpenSections(prev => ({
@@ -222,6 +224,42 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
       [sectionId]: !prev[sectionId]
     }));
   };
+
+  const getIcon = (iconName: string) => {
+    switch(iconName) {
+      case 'Play': return Play;
+      case 'TrendingUp': return TrendingUp;
+      case 'Palette': return Palette;
+      default: return Play;
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <section className="py-20 bg-gradient-to-b from-dark-bg to-darker-bg">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-12 bg-surface rounded-lg mx-auto mb-4 max-w-md"></div>
+              <div className="h-6 bg-surface rounded-lg mx-auto max-w-lg"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !services) {
+    return (
+      <section className="py-20 bg-gradient-to-b from-dark-bg to-darker-bg">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <p className="text-text-secondary">Erro ao carregar serviços.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-gradient-to-b from-dark-bg to-darker-bg">
@@ -240,7 +278,7 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
         {/* Services */}
         <div className="space-y-32">
           {services.map((service, index) => {
-            const Icon = service.icon;
+            const Icon = getIcon(service.icon);
             const isActive = activeService === service.id;
             
             return (
@@ -251,11 +289,11 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
               >
                 {/* Service Header */}
                 <div className="flex items-center gap-6 mb-16">
-                  <div className="p-4 bg-surface border border-primary-blue/30 rounded-xl tech-glow">
-                    <Icon className="w-8 h-8 text-primary-blue" />
+                  <div className="p-4 bg-surface border border-neon-green/30 rounded-xl tech-glow">
+                    <Icon className="w-8 h-8 text-neon-green" />
                   </div>
                   <div>
-                    <h3 className="text-4xl md:text-5xl font-bold text-foreground primary-text">
+                    <h3 className="text-4xl md:text-5xl font-bold text-foreground neon-text">
                       {service.title}
                     </h3>
                     <p className="text-xl text-text-secondary mt-2">{service.description}</p>
@@ -264,23 +302,23 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
 
                 {/* Sub-services */}
                 <div className="space-y-8">
-                  {service.subServices.map((subService, subIndex) => (
+                  {service.sub_services.map((subService, subIndex) => (
                     <div key={subService.id} className="ml-4 md:ml-8">
                       <Collapsible 
                         open={openSections[subService.id]} 
                         onOpenChange={() => toggleSection(subService.id)}
                       >
                         <CollapsibleTrigger className="w-full">
-                          <div className="flex items-center gap-4 mb-4 group hover:bg-accent-green/5 p-4 rounded-lg transition-all duration-300">
-                            {openSections[subService.id] ? (
-                              <ChevronDown className="w-6 h-6 text-accent-green transition-transform duration-300" />
-                            ) : (
-                              <ChevronRight className="w-6 h-6 text-accent-green transition-transform duration-300" />
-                            )}
-                            <h4 className="text-xl md:text-2xl font-bold text-accent-green text-left group-hover:text-primary-blue transition-colors duration-300">
-                              {subService.title}
-                            </h4>
-                          </div>
+            <div className="flex items-center gap-4 mb-4 group hover:bg-neon-green/5 p-4 rounded-lg transition-all duration-300">
+              {openSections[subService.id] ? (
+                <ChevronDown className="w-6 h-6 text-neon-green transition-transform duration-300" />
+              ) : (
+                <ChevronRight className="w-6 h-6 text-neon-green transition-transform duration-300" />
+              )}
+              <h4 className="text-xl md:text-2xl font-bold text-neon-green text-left group-hover:text-accent-cyan transition-colors duration-300">
+                {subService.title}
+              </h4>
+            </div>
                         </CollapsibleTrigger>
 
                         <CollapsibleContent className="ml-4 md:ml-8">
@@ -288,18 +326,18 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                             {subService.projects.map((project, projectIndex) => (
                               <Card key={projectIndex} className="surface-card overflow-hidden hover:border-primary-blue/50 transition-all duration-300 group">
-                                {/* Project Thumbnail */}
-                                <div className="relative cursor-pointer">
-                                  <img 
-                                    src={project.thumbnail}
-                                    alt={project.title}
-                                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                  />
+                              {/* Project Thumbnail */}
+                              <div className="relative cursor-pointer">
+                                <img 
+                                  src={project.thumbnail_url || audiovisualImg}
+                                  alt={project.title}
+                                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
                                   
                                   {/* Play Overlay */}
                                   <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <div className="w-16 h-16 bg-primary-blue/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                      <Play className="w-8 h-8 text-primary-blue ml-1" />
+                                    <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                      <Play className="w-8 h-8 text-neon-green ml-1" />
                                     </div>
                                   </div>
                                   
@@ -311,17 +349,17 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
 
                                 <div className="p-4 md:p-6">
                                   {/* Metrics for Marketing cases */}
-                                  {project.type === 'case' && project.metrics && (
+                                  {project.project_type === 'case' && project.metrics && project.metrics.length > 0 && (
                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                                       {project.metrics.map((metric, metricIndex) => (
                                         <div key={metricIndex} className="text-center">
                                           <div className="text-lg font-bold text-foreground">{metric.value}</div>
                                           <div className="text-xs text-text-muted">{metric.label}</div>
-                                          {metric.increase && (
-                                            <div className="text-xs text-accent-green font-medium">{metric.increase}</div>
+                                          {metric.change_percentage && metric.change_type === 'increase' && (
+                                            <div className="text-xs text-neon-green font-medium">{metric.change_percentage}</div>
                                           )}
-                                          {metric.decrease && (
-                                            <div className="text-xs text-accent-cyan font-medium">{metric.decrease}</div>
+                                          {metric.change_percentage && metric.change_type === 'decrease' && (
+                                            <div className="text-xs text-accent-cyan font-medium">{metric.change_percentage}</div>
                                           )}
                                         </div>
                                       ))}
@@ -332,27 +370,29 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                                   <Button 
                                     variant="outline" 
                                     size="sm"
-                                    className="w-full mb-4 border-primary-blue/30 text-primary-blue hover:bg-primary-blue hover:text-white"
+                                    className="w-full mb-4 border-neon-green/30 text-neon-green hover:bg-neon-green hover:text-dark-bg"
                                   >
                                     Ver todo trabalho
                                   </Button>
 
                                   {/* Feedback */}
-                                  <div className="border-t border-primary-blue/20 pt-4">
-                                    <p className="text-sm text-text-secondary italic mb-2">
-                                      "{project.feedback.text}"
-                                    </p>
-                                    <div className="flex items-center gap-2">
-                                      <div className="w-6 h-6 bg-gradient-to-r from-primary-blue to-accent-cyan rounded-full flex items-center justify-center">
-                                        <span className="text-xs text-white font-bold">
-                                          {project.feedback.author.charAt(0)}
+                                  {project.feedback && (
+                                    <div className="border-t border-neon-green/20 pt-4">
+                                      <p className="text-sm text-text-secondary italic mb-2">
+                                        "{project.feedback.feedback_text}"
+                                      </p>
+                                      <div className="flex items-center gap-2">
+                                        <div className="w-6 h-6 bg-gradient-to-r from-neon-green to-accent-cyan rounded-full flex items-center justify-center">
+                                          <span className="text-xs text-dark-bg font-bold">
+                                            {project.feedback.author_name.charAt(0)}
+                                          </span>
+                                        </div>
+                                        <span className="text-sm font-medium text-neon-green">
+                                          {project.feedback.author_name}
                                         </span>
                                       </div>
-                                      <span className="text-sm font-medium text-primary-blue">
-                                        {project.feedback.author}
-                                      </span>
                                     </div>
-                                  </div>
+                                  )}
                                 </div>
                               </Card>
                             ))}

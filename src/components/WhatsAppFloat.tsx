@@ -47,12 +47,12 @@ export default function WhatsAppFloat() {
           <Card className="w-full max-w-md bg-card-bg/90 backdrop-blur-sm border border-neon-green/30 animate-scale-in">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-neon-green/20">
-            <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary-blue/20 rounded-lg">
-                  <MessageCircle className="w-6 h-6 text-primary-blue" />
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-neon-green/20 rounded-lg">
+                  <MessageCircle className="w-6 h-6 text-neon-green" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary-blue">Conversar agora</h3>
+                  <h3 className="text-xl font-bold text-neon-green">Conversar agora</h3>
                   <p className="text-sm text-text-secondary">Selecione seus interesses</p>
                 </div>
               </div>
@@ -60,7 +60,7 @@ export default function WhatsAppFloat() {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(false)}
-                  className="text-text-muted hover:text-primary-blue"
+                  className="text-text-muted hover:text-neon-green"
                 >
                 <X className="w-5 h-5" />
               </Button>
@@ -75,8 +75,8 @@ export default function WhatsAppFloat() {
                     onClick={() => toggleService(service)}
                     className={`w-full p-3 rounded-lg border transition-all duration-300 text-left ${
                       selectedServices.includes(service)
-                        ? 'border-primary-blue bg-primary-blue/10 text-primary-blue'
-                        : 'border-primary-blue/30 bg-surface/50 text-text-secondary hover:border-primary-blue/60 hover:text-primary-blue'
+                        ? 'border-neon-green bg-neon-green/10 text-neon-green'
+                        : 'border-neon-green/30 bg-surface/50 text-text-secondary hover:border-neon-green/60 hover:text-neon-green'
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -93,7 +93,7 @@ export default function WhatsAppFloat() {
               <div className="space-y-3">
                 <Button
                   onClick={handleWhatsAppRedirect}
-                  className="w-full bg-primary-blue text-white hover:bg-primary-blue-dark font-bold tech-glow"
+                  className="w-full bg-neon-green text-dark-bg hover:bg-neon-green-dark font-bold tech-glow"
                 >
                   <div className="flex items-center justify-center gap-2">
                     <MessageCircle className="w-5 h-5" />
@@ -107,7 +107,7 @@ export default function WhatsAppFloat() {
                     setSelectedServices([]);
                     handleWhatsAppRedirect();
                   }}
-                  className="w-full border-primary-blue/50 text-primary-blue hover:bg-primary-blue hover:text-white"
+                  className="w-full border-neon-green/50 text-neon-green hover:bg-neon-green hover:text-dark-bg"
                 >
                   Conversar sem especificar serviços
                 </Button>
@@ -122,14 +122,14 @@ export default function WhatsAppFloat() {
       )}
 
       {/* Floating Button */}
-      <div className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 md:bottom-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:translate-y-1/2 z-40">
+      <div className="fixed bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-40">
         <Button
           onClick={() => setIsOpen(true)}
-          className="group bg-primary-blue text-white hover:bg-primary-blue-dark font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl tech-glow transition-all duration-300"
+          className="group bg-neon-green text-dark-bg hover:bg-neon-green-dark font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl tech-glow transition-all duration-300"
         >
-          <div className="flex items-center gap-2">
-            <MessageCircle className="w-5 h-5" />
-            <span className="inline">Conversar agora</span>
+          <div className="flex items-center gap-3">
+            <MessageCircle className="w-6 h-6" />
+            <span className="text-lg font-black">Conversar agora</span>
           </div>
         </Button>
       </div>

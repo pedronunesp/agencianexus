@@ -23,13 +23,13 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         
-        // Clean Tech Colors
-        'primary-blue': "hsl(var(--primary-blue))",
-        'primary-blue-light': "hsl(var(--primary-blue-light))",
-        'primary-blue-dark': "hsl(var(--primary-blue-dark))",
-        'accent-green': "hsl(var(--accent-green))",
+        // Clean Tech Colors - Verde Nexus
+        'neon-green': "hsl(var(--neon-green))",
+        'neon-green-light': "hsl(var(--neon-green-light))",
+        'neon-green-dark': "hsl(var(--neon-green-dark))",
         'accent-cyan': "hsl(var(--accent-cyan))",
         'accent-purple': "hsl(var(--accent-purple))",
+        'accent-blue': "hsl(var(--accent-blue))",
         'dark-bg': "hsl(var(--dark-bg))",
         'darker-bg': "hsl(var(--darker-bg))",
         'card-bg': "hsl(var(--card-bg))",
@@ -91,8 +91,18 @@ export default {
           "50%": { transform: "translateY(-8px)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 15px hsl(var(--primary-blue) / 0.2)" },
-          "50%": { boxShadow: "0 0 25px hsl(var(--primary-blue) / 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 15px hsl(var(--neon-green) / 0.2)" },
+          "50%": { boxShadow: "0 0 25px hsl(var(--neon-green) / 0.4)" },
+        },
+        "neon-pulse": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(var(--neon-green) / 0.6)",
+            textShadow: "0 0 10px hsl(var(--neon-green) / 0.8)"
+          },
+          "50%": { 
+            boxShadow: "0 0 30px hsl(var(--neon-green) / 0.8)",
+            textShadow: "0 0 15px hsl(var(--neon-green) / 1)"
+          },
         },
         "slide-up": {
           from: { opacity: "0", transform: "translateY(30px)" },
@@ -113,6 +123,7 @@ export default {
         "soft-pulse": "soft-pulse 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "neon-pulse": "neon-pulse 2s ease-in-out infinite",
         "slide-up": "slide-up 0.6s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "typing": "typing 3s steps(20) infinite",

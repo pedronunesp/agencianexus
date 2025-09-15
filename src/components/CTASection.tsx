@@ -90,7 +90,7 @@ ${formData.message}`;
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Conte-nos sobre seu projeto e receba um orçamento personalizado em até 24 horas
           </p>
-          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-primary-blue to-accent-cyan mt-8"></div>
+          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-neon-green to-accent-cyan mt-8"></div>
         </div>
 
         {/* CTA Form */}
@@ -99,7 +99,7 @@ ${formData.message}`;
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Services Selection */}
               <div>
-                <h3 className="text-2xl font-bold text-primary-blue mb-6">
+                <h3 className="text-2xl font-bold text-neon-green mb-6">
                   Selecione os serviços de interesse:
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -110,8 +110,8 @@ ${formData.message}`;
                       onClick={() => toggleService(service)}
                       className={`p-4 rounded-lg border transition-all duration-300 text-left ${
                         selectedServices.includes(service)
-                          ? 'border-primary-blue bg-primary-blue/10 text-primary-blue'
-                          : 'border-primary-blue/30 bg-surface/50 text-text-secondary hover:border-primary-blue/60 hover:text-primary-blue'
+                          ? 'border-neon-green bg-neon-green/10 text-neon-green'
+                          : 'border-neon-green/30 bg-surface/50 text-text-secondary hover:border-neon-green/60 hover:text-neon-green'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -135,7 +135,7 @@ ${formData.message}`;
                     required
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="bg-darker-bg/50 border-primary-blue/30 text-foreground focus:border-primary-blue"
+                    className="bg-darker-bg/50 border-neon-green/30 text-foreground focus:border-neon-green"
                     placeholder="Seu nome completo"
                   />
                 </div>
