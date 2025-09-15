@@ -14,7 +14,263 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      client_logos: {
+        Row: {
+          created_at: string | null
+          display_order: number
+          id: string
+          is_visible: boolean | null
+          logo_url: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          logo_url?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          logo_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      project_feedback: {
+        Row: {
+          author_name: string
+          created_at: string | null
+          feedback_text: string
+          id: string
+          project_id: string | null
+        }
+        Insert: {
+          author_name: string
+          created_at?: string | null
+          feedback_text: string
+          id?: string
+          project_id?: string | null
+        }
+        Update: {
+          author_name?: string
+          created_at?: string | null
+          feedback_text?: string
+          id?: string
+          project_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_feedback_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_metrics: {
+        Row: {
+          change_percentage: string | null
+          change_type: string | null
+          created_at: string | null
+          display_order: number
+          id: string
+          label: string
+          project_id: string | null
+          value: string
+        }
+        Insert: {
+          change_percentage?: string | null
+          change_type?: string | null
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          label: string
+          project_id?: string | null
+          value: string
+        }
+        Update: {
+          change_percentage?: string | null
+          change_type?: string | null
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          label?: string
+          project_id?: string | null
+          value?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_metrics_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          created_at: string | null
+          display_order: number
+          id: string
+          is_visible: boolean | null
+          project_type: string
+          sub_service_id: string | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          project_type: string
+          sub_service_id?: string | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          project_type?: string
+          sub_service_id?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_sub_service_id_fkey"
+            columns: ["sub_service_id"]
+            isOneToOne: false
+            referencedRelation: "sub_services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          created_at: string | null
+          description: string
+          display_order: number
+          icon: string
+          id: string
+          is_visible: boolean | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          display_order?: number
+          icon: string
+          id?: string
+          is_visible?: boolean | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          display_order?: number
+          icon?: string
+          id?: string
+          is_visible?: boolean | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      sub_services: {
+        Row: {
+          created_at: string | null
+          display_order: number
+          id: string
+          is_visible: boolean | null
+          service_id: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          service_id?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          service_id?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sub_services_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      testimonials: {
+        Row: {
+          company: string
+          content: string
+          created_at: string | null
+          display_order: number
+          id: string
+          is_visible: boolean | null
+          name: string
+          rating: number
+          role: string
+          service: string
+          updated_at: string | null
+        }
+        Insert: {
+          company: string
+          content: string
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          name: string
+          rating: number
+          role: string
+          service: string
+          updated_at?: string | null
+        }
+        Update: {
+          company?: string
+          content?: string
+          created_at?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          name?: string
+          rating?: number
+          role?: string
+          service?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
