@@ -4,7 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import ServicesAdmin from "@/components/admin/ServicesAdmin";
 import TestimonialsAdmin from "@/components/admin/TestimonialsAdmin";
 import ClientLogosAdmin from "@/components/admin/ClientLogosAdmin";
-import { Shield, Settings, Users, Image, Briefcase } from "lucide-react";
+import ProjectMetricsAdmin from "@/components/admin/ProjectMetricsAdmin";
+import ProjectFeedbackAdmin from "@/components/admin/ProjectFeedbackAdmin";
+import { Shield, Settings, Users, Image, Briefcase, BarChart3, MessageSquare } from "lucide-react";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("services");
@@ -23,7 +25,7 @@ const Admin = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-3">
+          <TabsList className="grid w-full grid-cols-5 lg:grid-cols-5">
             <TabsTrigger value="services" className="flex items-center gap-2">
               <Briefcase className="h-4 w-4" />
               Serviços
@@ -34,7 +36,15 @@ const Admin = () => {
             </TabsTrigger>
             <TabsTrigger value="logos" className="flex items-center gap-2">
               <Image className="h-4 w-4" />
-              Logos Clientes
+              Logos
+            </TabsTrigger>
+            <TabsTrigger value="metrics" className="flex items-center gap-2">
+              <BarChart3 className="h-4 w-4" />
+              Métricas
+            </TabsTrigger>
+            <TabsTrigger value="feedback" className="flex items-center gap-2">
+              <MessageSquare className="h-4 w-4" />
+              Feedback
             </TabsTrigger>
           </TabsList>
 
@@ -86,6 +96,40 @@ const Admin = () => {
                 </CardHeader>
                 <CardContent>
                   <ClientLogosAdmin />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="metrics" className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <BarChart3 className="h-5 w-5" />
+                    Gerenciar Métricas de Projetos
+                  </CardTitle>
+                  <CardDescription>
+                    Adicione, edite ou remova métricas de desempenho dos projetos
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ProjectMetricsAdmin />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="feedback" className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MessageSquare className="h-5 w-5" />
+                    Gerenciar Feedback de Projetos
+                  </CardTitle>
+                  <CardDescription>
+                    Adicione, edite ou remova feedback de clientes sobre projetos
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ProjectFeedbackAdmin />
                 </CardContent>
               </Card>
             </TabsContent>
