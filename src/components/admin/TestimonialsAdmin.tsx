@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTestimonials } from "@/hooks/useTestimonials";
+import { useAllTestimonials } from "@/hooks/useTestimonials";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Testimonial } from "@/hooks/useTestimonials";
 
 const TestimonialsAdmin = () => {
-  const { data: testimonials, refetch } = useTestimonials();
+  const { data: testimonials, refetch } = useAllTestimonials();
   const { toast } = useToast();
   const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null);
   const [newTestimonial, setNewTestimonial] = useState({

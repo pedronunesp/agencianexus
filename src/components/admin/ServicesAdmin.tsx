@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useServices } from "@/hooks/useServices";
+import { useAllServices } from "@/hooks/useServices";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Service, SubService, Project } from "@/hooks/useServices";
 
 const ServicesAdmin = () => {
-  const { data: services, refetch } = useServices();
+  const { data: services, refetch } = useAllServices();
   const { toast } = useToast();
   const [editingService, setEditingService] = useState<Service | null>(null);
   const [editingSubService, setEditingSubService] = useState<SubService | null>(null);

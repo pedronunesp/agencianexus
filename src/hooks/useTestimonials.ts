@@ -30,3 +30,19 @@ export const useTestimonials = () => {
     },
   });
 };
+
+// Hook for admin panel (all testimonials, including hidden ones)
+export const useAllTestimonials = () => {
+  return useQuery({
+    queryKey: ['all-testimonials'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('testimonials')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+      return data as Testimonial[];
+    },
+  });
+};

@@ -124,3 +124,69 @@ export const useServices = () => {
     },
   });
 };
+
+// Hook for admin panel (all items, including hidden ones)
+export const useAllServices = () => {
+  return useQuery({
+    queryKey: ['all-services'],
+    queryFn: async () => {
+      // Fetch ALL services (including hidden)
+      const { data: services, error: servicesError } = await supabase
+        .from('services')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (servicesError) throw servicesError;
+
+      // Fetch ALL sub-services (including hidden)
+      const { data: subServices, error: subServicesError } = await supabase
+        .from('sub_services')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (subServicesError) throw subServicesError;
+
+      // Fetch ALL projects (including hidden)
+      const { data: projects, error: projectsError } = await supabase
+        .from('projects')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (projectsError) throw projectsError;
+
+      // Fetch ALL project metrics
+      const { data: metrics, error: metricsError } = await supabase
+        .from('project_metrics')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (metricsError) throw metricsError;
+
+      // Fetch ALL project feedback
+      const { data: feedback, error: feedbackError } = await supabase
+        .from('project_feedback')
+        .select('*');
+
+      if (feedbackError) throw feedbackError;
+
+      // Organize data hierarchically
+      const organizedServices: Service[] = services.map(service => ({
+        ...service,
+        sub_services: subServices
+          .filter(sub => sub.service_id === service.id)
+          .map(subService => ({
+            ...subService,
+            projects: projects
+              .filter(project => project.sub_service_id === subService.id)
+              .map(project => ({
+                ...project,
+                metrics: metrics.filter(metric => metric.project_id === project.id),
+                feedback: feedback.find(fb => fb.project_id === project.id)
+              }))
+          }))
+      }));
+
+      return organizedServices;
+    },
+  });
+};

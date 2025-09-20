@@ -25,3 +25,19 @@ export const useClientLogos = () => {
     },
   });
 };
+
+// Hook for admin panel (all logos, including hidden ones)
+export const useAllClientLogos = () => {
+  return useQuery({
+    queryKey: ['all-client-logos'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('client_logos')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+      return data as ClientLogo[];
+    },
+  });
+};

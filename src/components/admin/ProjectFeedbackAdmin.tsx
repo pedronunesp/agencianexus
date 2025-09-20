@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useServices } from "@/hooks/useServices";
+import { useAllServices } from "@/hooks/useServices";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,7 +18,7 @@ interface ProjectFeedback {
 }
 
 const ProjectFeedbackAdmin = () => {
-  const { data: services, refetch } = useServices();
+  const { data: services, refetch } = useAllServices();
   const { toast } = useToast();
   const [editingFeedback, setEditingFeedback] = useState<ProjectFeedback | null>(null);
   const [newFeedback, setNewFeedback] = useState({

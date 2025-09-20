@@ -65,6 +65,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "fk_project_feedback_project_id"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "project_feedback_project_id_fkey"
             columns: ["project_id"]
             isOneToOne: false
@@ -105,6 +112,13 @@ export type Database = {
           value?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "fk_project_metrics_project_id"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "project_metrics_project_id_fkey"
             columns: ["project_id"]
@@ -149,6 +163,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "fk_projects_sub_service_id"
+            columns: ["sub_service_id"]
+            isOneToOne: false
+            referencedRelation: "sub_services"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "projects_sub_service_id_fkey"
             columns: ["sub_service_id"]
@@ -220,6 +241,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "fk_sub_services_service_id"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "sub_services_service_id_fkey"
             columns: ["service_id"]

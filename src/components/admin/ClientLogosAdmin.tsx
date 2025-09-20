@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useClientLogos } from "@/hooks/useClientLogos";
+import { useAllClientLogos } from "@/hooks/useClientLogos";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { ClientLogo } from "@/hooks/useClientLogos";
 
 const ClientLogosAdmin = () => {
-  const { data: clientLogos, refetch } = useClientLogos();
+  const { data: clientLogos, refetch } = useAllClientLogos();
   const { toast } = useToast();
   const [editingLogo, setEditingLogo] = useState<ClientLogo | null>(null);
   const [newLogo, setNewLogo] = useState({

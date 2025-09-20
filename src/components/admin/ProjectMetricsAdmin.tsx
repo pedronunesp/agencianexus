@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useServices } from "@/hooks/useServices";
+import { useAllServices } from "@/hooks/useServices";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,7 +20,7 @@ interface ProjectMetric {
 }
 
 const ProjectMetricsAdmin = () => {
-  const { data: services, refetch } = useServices();
+  const { data: services, refetch } = useAllServices();
   const { toast } = useToast();
   const [editingMetric, setEditingMetric] = useState<ProjectMetric | null>(null);
   const [newMetric, setNewMetric] = useState({
