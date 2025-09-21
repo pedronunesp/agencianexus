@@ -30,6 +30,9 @@ export interface Project {
   title: string;
   thumbnail_url: string | null;
   project_type: string;
+  media_type?: string;
+  video_url?: string | null;
+  description?: string | null;
   display_order: number;
   is_visible: boolean;
   created_at: string;

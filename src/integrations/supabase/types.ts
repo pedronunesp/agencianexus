@@ -80,6 +80,53 @@ export type Database = {
           },
         ]
       }
+      project_gallery: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_order: number
+          id: string
+          is_visible: boolean | null
+          media_type: string
+          media_url: string
+          project_id: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          media_type?: string
+          media_url: string
+          project_id?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          id?: string
+          is_visible?: boolean | null
+          media_type?: string
+          media_url?: string
+          project_id?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_gallery_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       project_metrics: {
         Row: {
           change_percentage: string | null
@@ -131,36 +178,45 @@ export type Database = {
       projects: {
         Row: {
           created_at: string | null
+          description: string | null
           display_order: number
           id: string
           is_visible: boolean | null
+          media_type: string | null
           project_type: string
           sub_service_id: string | null
           thumbnail_url: string | null
           title: string
           updated_at: string | null
+          video_url: string | null
         }
         Insert: {
           created_at?: string | null
+          description?: string | null
           display_order?: number
           id?: string
           is_visible?: boolean | null
+          media_type?: string | null
           project_type: string
           sub_service_id?: string | null
           thumbnail_url?: string | null
           title: string
           updated_at?: string | null
+          video_url?: string | null
         }
         Update: {
           created_at?: string | null
+          description?: string | null
           display_order?: number
           id?: string
           is_visible?: boolean | null
+          media_type?: string | null
           project_type?: string
           sub_service_id?: string | null
           thumbnail_url?: string | null
           title?: string
           updated_at?: string | null
+          video_url?: string | null
         }
         Relationships: [
           {

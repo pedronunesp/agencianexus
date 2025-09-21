@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useServices } from "@/hooks/useServices";
+import { Link } from "react-router-dom";
+import MediaRenderer from "@/components/MediaRenderer";
 import audiovisualImg from "@/assets/audiovisual-service.jpg";
 import marketingImg from "@/assets/marketing-service.jpg";
 import designImg from "@/assets/design-service.jpg";
@@ -325,21 +327,16 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                           {/* Projects */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                             {subService.projects.map((project, projectIndex) => (
-                              <Card key={projectIndex} className="surface-card overflow-hidden hover:border-primary-blue/50 transition-all duration-300 group">
+                              <Card key={project.id} className="surface-card overflow-hidden hover:border-primary-blue/50 transition-all duration-300 group">
                               {/* Project Thumbnail */}
-                              <div className="relative cursor-pointer">
-                                <img 
-                                  src={project.thumbnail_url || audiovisualImg}
-                                  alt={project.title}
-                                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                              <div className="relative cursor-pointer h-48">
+                                <MediaRenderer
+                                  mediaUrl={project.thumbnail_url || audiovisualImg}
+                                  mediaType={project.media_type as 'image' | 'video' || 'image'}
+                                  videoUrl={project.video_url}
+                                  title={project.title}
+                                  className="group-hover:scale-105 transition-transform duration-300"
                                 />
-                                  
-                                  {/* Play Overlay */}
-                                  <div className="absolute inset-0 bg-dark-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                      <Play className="w-8 h-8 text-neon-green ml-1" />
-                                    </div>
-                                  </div>
                                   
                                   {/* Project Title Overlay */}
                                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-dark-bg via-dark-bg/80 to-transparent">
@@ -367,13 +364,15 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                                   )}
 
                                   {/* See All Work Button */}
-                                  <Button 
-                                    variant="outline" 
-                                    size="sm"
-                                    className="w-full mb-4 border-neon-green/30 text-neon-green hover:bg-neon-green hover:text-dark-bg"
-                                  >
-                                    Ver todo trabalho
-                                  </Button>
+                                  <Link to={`/project/${project.id}/gallery`}>
+                                    <Button 
+                                      variant="outline" 
+                                      size="sm"
+                                      className="w-full mb-4 border-neon-green/30 text-neon-green hover:bg-neon-green hover:text-dark-bg"
+                                    >
+                                      Ver todo trabalho
+                                    </Button>
+                                  </Link>
 
                                   {/* Feedback */}
                                   {project.feedback && (

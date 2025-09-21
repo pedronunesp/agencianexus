@@ -6,7 +6,8 @@ import TestimonialsAdmin from "@/components/admin/TestimonialsAdmin";
 import ClientLogosAdmin from "@/components/admin/ClientLogosAdmin";
 import ProjectMetricsAdmin from "@/components/admin/ProjectMetricsAdmin";
 import ProjectFeedbackAdmin from "@/components/admin/ProjectFeedbackAdmin";
-import { Shield, Settings, Users, Image, Briefcase, BarChart3, MessageSquare } from "lucide-react";
+import ProjectGalleryAdmin from "@/components/admin/ProjectGalleryAdmin";
+import { Shield, Settings, Users, Image, Briefcase, BarChart3, MessageSquare, Images } from "lucide-react";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("services");
@@ -25,10 +26,14 @@ const Admin = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-5 lg:grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6 lg:grid-cols-6">
             <TabsTrigger value="services" className="flex items-center gap-2">
               <Briefcase className="h-4 w-4" />
               Serviços
+            </TabsTrigger>
+            <TabsTrigger value="gallery" className="flex items-center gap-2">
+              <Images className="h-4 w-4" />
+              Galeria
             </TabsTrigger>
             <TabsTrigger value="testimonials" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
@@ -62,6 +67,23 @@ const Admin = () => {
                 </CardHeader>
                 <CardContent>
                   <ServicesAdmin />
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="gallery" className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Images className="h-5 w-5" />
+                    Gerenciar Galeria de Projetos
+                  </CardTitle>
+                  <CardDescription>
+                    Adicione, edite ou remova itens da galeria dos projetos
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ProjectGalleryAdmin />
                 </CardContent>
               </Card>
             </TabsContent>
