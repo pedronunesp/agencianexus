@@ -52,7 +52,6 @@ export default function ProjectGallery() {
                 <div className="aspect-video">
                   <MediaRenderer
                     mediaUrl={item.media_url}
-                    mediaType={item.media_type as 'image' | 'video'}
                     videoUrl={item.media_type === 'video' ? item.media_url : undefined}
                     title={item.title}
                   />

@@ -332,10 +332,10 @@ export default function ServicesSection({ activeService }: ServicesSectionProps)
                               <div className="relative cursor-pointer h-48">
                                 <MediaRenderer
                                   mediaUrl={project.thumbnail_url || audiovisualImg}
-                                  mediaType={project.media_type as 'image' | 'video' || 'image'}
                                   videoUrl={project.video_url}
                                   title={project.title}
                                   className="group-hover:scale-105 transition-transform duration-300"
+                                  showPreview={true}
                                 />
                                   
                                   {/* Project Title Overlay */}
