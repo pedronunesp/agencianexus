@@ -122,7 +122,7 @@ export default function WhatsAppFloat() {
       )}
 
       {/* Floating Button */}
-      <div className="fixed bottom-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-40">
+      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40">
         <Button
           onClick={() => setIsOpen(true)}
           className="group bg-neon-green text-dark-bg hover:bg-neon-green-dark font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl tech-glow transition-all duration-300"
