@@ -15,9 +15,9 @@ interface EditingItem extends Omit<ProjectGalleryItem, 'id' | 'created_at' | 'up
 
 export default function ProjectGalleryAdmin() {
   const [editingItem, setEditingItem] = useState<EditingItem | null>(null);
-  const [selectedProjectId, setSelectedProjectId] = useState<string>("");
+  const [selectedProjectId, setSelectedProjectId] = useState<string>("all");
   
-  const { data: galleryItems = [], isLoading } = useAllProjectGallery(selectedProjectId || undefined);
+  const { data: galleryItems = [], isLoading } = useAllProjectGallery(selectedProjectId === "all" ? undefined : selectedProjectId);
   const { data: services = [] } = useAllServices();
   const createMutation = useCreateGalleryItem();
   const updateMutation = useUpdateGalleryItem();
@@ -101,7 +101,7 @@ export default function ProjectGalleryAdmin() {
               <SelectValue placeholder="Selecione um projeto" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos os projetos</SelectItem>
+              <SelectItem value="all">Todos os projetos</SelectItem>
               {allProjects.map((project) => (
                 <SelectItem key={project.id} value={project.id}>
                   {project.serviceName} / {project.subServiceName} / {project.title}
@@ -278,7 +278,7 @@ export default function ProjectGalleryAdmin() {
       {galleryItems.length === 0 && (
         <Card className="text-center py-8">
           <p className="text-gray-500">
-            {selectedProjectId ? "Nenhum item encontrado para este projeto." : "Nenhum item de galeria encontrado."}
+            {selectedProjectId !== "all" ? "Nenhum item encontrado para este projeto." : "Nenhum item de galeria encontrado."}
           </p>
         </Card>
       )}
