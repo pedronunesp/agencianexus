@@ -1,38 +1,32 @@
-# Welcome to your Lovable project
+# Nexus Digital - Site da Agência
 
-## Project info
+## Sobre o Projeto
 
-**URL**: https://lovable.dev/projects/0ad160ec-20d1-4f18-93d9-d15a64edaf04
+Site institucional da Nexus Digital com painel administrativo completo para gerenciamento de serviços, projetos, depoimentos e logos de clientes.
 
-## How can I edit this code?
+## Repositório
 
-There are several ways of editing your application.
+**GitHub**: https://github.com/pedronunesp/agencianexus
 
-**Use Lovable**
+## Como executar o projeto
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0ad160ec-20d1-4f18-93d9-d15a64edaf04) and start prompting.
+### Pré-requisitos
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js & npm instalados - [instalar com nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Passos para execução:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Step 1: Clone o repositório
+git clone https://github.com/pedronunesp/agencianexus.git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Navegue até o diretório do projeto
+cd agencianexus/nexusdigital
 
-# Step 3: Install the necessary dependencies.
+# Step 3: Instale as dependências
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
