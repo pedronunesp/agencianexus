@@ -43,7 +43,7 @@ CREATE TABLE public.project_metrics (
   label TEXT NOT NULL,
   value TEXT NOT NULL,
   change_percentage TEXT,
-  change_type TEXT CHECK (change_type IN ('increase', 'decrease')),
+  change_type TEXT CHECK (change_type IN ('increase', 'decrease', 'neutral')),
   display_order INTEGER NOT NULL DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
 );

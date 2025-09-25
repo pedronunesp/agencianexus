@@ -38,22 +38,26 @@ ALTER TABLE public.project_feedback
 ADD CONSTRAINT fk_project_feedback_project_id 
 FOREIGN KEY (project_id) REFERENCES public.projects(id) ON DELETE CASCADE;
 
--- Add update triggers for all tables with updated_at
+-- Add update triggers for all tables with updated_at (using DROP IF EXISTS to avoid conflicts)
+DROP TRIGGER IF EXISTS update_services_updated_at ON public.services;
 CREATE TRIGGER update_services_updated_at
     BEFORE UPDATE ON public.services
     FOR EACH ROW
     EXECUTE FUNCTION public.update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_sub_services_updated_at ON public.sub_services;
 CREATE TRIGGER update_sub_services_updated_at
     BEFORE UPDATE ON public.sub_services
     FOR EACH ROW
     EXECUTE FUNCTION public.update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_projects_updated_at ON public.projects;
 CREATE TRIGGER update_projects_updated_at
     BEFORE UPDATE ON public.projects
     FOR EACH ROW
     EXECUTE FUNCTION public.update_updated_at_column();
 
+DROP TRIGGER IF EXISTS update_testimonials_updated_at ON public.testimonials;
 CREATE TRIGGER update_testimonials_updated_at
     BEFORE UPDATE ON public.testimonials
     FOR EACH ROW
